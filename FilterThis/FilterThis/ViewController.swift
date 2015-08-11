@@ -27,17 +27,59 @@ class ViewController: UIViewController {
     let chooserAction = UIAlertAction(title: "Choose", style: UIAlertActionStyle.Default) { (alert) -> Void in
       self.presentViewController(self.picker, animated: true, completion: nil)
     }
+      let options = [kCIContextWorkingColorSpace: NSNull()]
+      let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
+      let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
+    
     
     let sepiaAction = UIAlertAction(title: "Sepia", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      println("apply sepia")
+      let image = CIImage(image: self.imageView.image!)
+      let sepiaFilter = CIFilter(name: "CISepiaTone")
+      sepiaFilter.setValue(image, forKey: kCIInputImageKey)
+      sepiaFilter.setValue(1, forKey: kCIInputIntensityKey)
+      
+      let outputImage = sepiaFilter.outputImage
+      let extent = outputImage.extent()
+      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
+      let finalImage = UIImage(CGImage: cgImage)
+      self.imageView.image = finalImage
     }
     
     let DepthOfFieldAction = UIAlertAction(title: "Depth Of Field", style: UIAlertActionStyle.Default){(alert) -> Void in
       println("appy depth of field")
+      let image = CIImage(image: self.imageView.image!)
+      let DepthOfFieldFilter = CIFilter(name: "CIDepthOfField")
+      DepthOfFieldFilter.setValue(image, forKey: kCIInputImageKey)
+      DepthOfFieldFilter.setValue(, forKey: kCIInputPoint1Key)
+      DepthOfFieldFilter.setValue(, forKey: kCIInputPoint2Key)
+      DepthOfFieldFilter.setValue(, forKey: kCIInputSaturationKey)
+      DepthOfFieldFilter.setValue(, forKey: kCIInputUnsharpMaskRadiusKey)
+      DepthOfFieldFilter.setValue(, forKey: kCIInputUnsharpMaskItensityKey)
+      DepthOfFieldFilter.setValue(, forKey: kCIInputRadiusKey)
+      
+      let outputImage = DepthOfFieldFilter.outputImage
+      let extent = outputImage.extent()
+      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
+      let finalImage = UIImage(CGImage: cgImage)
+      self.imageView.image = finalImage
+      
     }
     
     let GloomAction = UIAlertAction(title: "Gloom", style:  UIAlertActionStyle.Default) { (alert) -> Void in
-      println("apply gloom")
+      let image = CIImage(image: self.imageView.image!)
+      let gloomFilter = CIFilter(name: "CIGloom")
+      gloomFilter.setValue(image, forKey: kCIInputImageKey)
+      gloomFilter.setValue(10, forKey: kCIInputRadiusKey)
+      gloomFilter.setValue(1, forKey: kCIInputIntensityKey)
+      
+      let outputImage = gloomFilter.outputImage
+      let extent = outputImage.extent()
+      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
+      let finalImage = UIImage(CGImage: cgImage)
+      self.imageView.image = finalImage
+      
+      
+      
     }
     
     alert.addAction(cancelAction)
@@ -47,8 +89,10 @@ class ViewController: UIViewController {
     alert.addAction(GloomAction)
     
     
-    self.picker.delegate = self
-    self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+    picker.delegate = self
+    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){picker.sourceType = UIImagePickerControllerSourceType.Camera
+      }
+    else {picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary}
     
   }
 
