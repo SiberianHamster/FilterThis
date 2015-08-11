@@ -47,15 +47,11 @@ class ViewController: UIViewController {
     
     let DepthOfFieldAction = UIAlertAction(title: "Depth Of Field", style: UIAlertActionStyle.Default){(alert) -> Void in
       println("appy depth of field")
+//      let imageInputPoint1 = CGVectorMake(100, 100)
+//      let imageInputPoint2 = CGVectorMake(300, 300)
       let image = CIImage(image: self.imageView.image!)
-      let DepthOfFieldFilter = CIFilter(name: "CIDepthOfField")
-      DepthOfFieldFilter.setValue(image, forKey: kCIInputImageKey)
-      DepthOfFieldFilter.setValue(, forKey: kCIInputPoint1Key)
-      DepthOfFieldFilter.setValue(, forKey: kCIInputPoint2Key)
-      DepthOfFieldFilter.setValue(, forKey: kCIInputSaturationKey)
-      DepthOfFieldFilter.setValue(, forKey: kCIInputUnsharpMaskRadiusKey)
-      DepthOfFieldFilter.setValue(, forKey: kCIInputUnsharpMaskItensityKey)
-      DepthOfFieldFilter.setValue(, forKey: kCIInputRadiusKey)
+//      let vector = CIVector(x: <#CGFloat#>, y: <#CGFloat#>)
+      let DepthOfFieldFilter = CIFilter(name: "CIDepthOfField", withInputParameters:["inputImage":image]["inputPoint1":imageInputPoint1]["inputPoint2":imageInputPoint2] ["inputSaturation":10]["inputUnsharpMaskRadius":100]["inputUnsharpMaskIntensity":1]["inputRadius":10])
       
       let outputImage = DepthOfFieldFilter.outputImage
       let extent = outputImage.extent()

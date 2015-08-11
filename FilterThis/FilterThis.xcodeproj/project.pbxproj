@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE24E5CE1B7AC2C00061B04E /* keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE24E5CD1B7AC2C00061B04E /* keys.swift */; };
 		AE70BE3D1B79D07C00183C21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE70BE3C1B79D07C00183C21 /* AppDelegate.swift */; };
 		AE70BE3F1B79D07C00183C21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE70BE3E1B79D07C00183C21 /* ViewController.swift */; };
 		AE70BE421B79D07C00183C21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE70BE401B79D07C00183C21 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE24E5CD1B7AC2C00061B04E /* keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = keys.swift; sourceTree = "<group>"; };
 		AE70BE371B79D07C00183C21 /* FilterThis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilterThis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE70BE3B1B79D07C00183C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE70BE3C1B79D07C00183C21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				AE70BE3B1B79D07C00183C21 /* Info.plist */,
+				AE24E5CD1B7AC2C00061B04E /* keys.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE24E5CE1B7AC2C00061B04E /* keys.swift in Sources */,
 				AE70BE3F1B79D07C00183C21 /* ViewController.swift in Sources */,
 				AE70BE3D1B79D07C00183C21 /* AppDelegate.swift in Sources */,
 			);
@@ -411,6 +415,7 @@
 				AE70BE581B79D07C00183C21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AE70BE591B79D07C00183C21 /* Build configuration list for PBXNativeTarget "FilterThisTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +424,7 @@
 				AE70BE5B1B79D07C00183C21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
