@@ -56,7 +56,8 @@ xcuserdata
 
 # Parse
 #
-**/keys.swifts
+**/keys.swift
+
 
 Carthage/Build
 Status API Training Shop Blog About Help
