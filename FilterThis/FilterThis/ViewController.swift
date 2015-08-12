@@ -96,17 +96,40 @@ class ViewController: UIViewController {
       let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
       let finalImage = UIImage(CGImage: cgImage)
       self.imageView.image = finalImage
-      
-      
-      
     }
-    
+      
+    let PostThisAction = UIAlertAction(title: "PostThis", style: UIAlertActionStyle.Default, handler: { (alert) -> Void in
+      
+      
+      let post = PFObject(className: "Post")
+      post["Text"] = "Test Post"
+     
+      if let image = self.imageView.image
+      {
+      let resizedImage = ImageResizer.ImageResizer(image)
+      let newImage = resizedImage
+      let data = UIImageJPEGRepresentation(newImage, 1.0)
+      
+        let file = PFFile(name: "post.jpeg",data: data)
+        post["image"] = file
+      }
+      post.saveInBackgroundWithBlock({ (suceeded, error) -> Void in
+        
+      })
+      
+    })
+      
+      
+      
+  
+
     alert.addAction(cancelAction)
     alert.addAction(chooserAction)
     alert.addAction(sepiaAction)
     alert.addAction(gaussianBlurAction)
 //    alert.addAction(DepthOfFieldAction)
     alert.addAction(GloomAction)
+    alert.addAction(PostThisAction)
     
     
     picker.delegate = self

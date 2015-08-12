@@ -26,6 +26,7 @@
 		AEDF24BC1B7B0B210032F657 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF24B21B7B0B200032F657 /* Security.framework */; };
 		AEDF24BD1B7B0B210032F657 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF24B31B7B0B210032F657 /* StoreKit.framework */; };
 		AEDF24BE1B7B0B210032F657 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF24B41B7B0B210032F657 /* SystemConfiguration.framework */; };
+		AEE5C10D1B7BAECE007F844D /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE5C10C1B7BAECE007F844D /* ImageResizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		AEDF24B21B7B0B200032F657 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		AEDF24B31B7B0B210032F657 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		AEDF24B41B7B0B210032F657 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AEE5C10C1B7BAECE007F844D /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			children = (
 				AE70BE3C1B79D07C00183C21 /* AppDelegate.swift */,
 				AE70BE3E1B79D07C00183C21 /* ViewController.swift */,
+				AEE5C10C1B7BAECE007F844D /* ImageResizer.swift */,
 				AE70BE401B79D07C00183C21 /* Main.storyboard */,
 				AE70BE431B79D07C00183C21 /* Images.xcassets */,
 				AE70BE451B79D07C00183C21 /* LaunchScreen.xib */,
@@ -212,6 +215,7 @@
 				TargetAttributes = {
 					AE70BE361B79D07C00183C21 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 7BYM9FUB94;
 					};
 					AE70BE4B1B79D07C00183C21 = {
 						CreatedOnToolsVersion = 6.4;
@@ -263,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEE5C10D1B7BAECE007F844D /* ImageResizer.swift in Sources */,
 				AE24E5CE1B7AC2C00061B04E /* keys.swift in Sources */,
 				AE70BE3F1B79D07C00183C21 /* ViewController.swift in Sources */,
 				AE70BE3D1B79D07C00183C21 /* AppDelegate.swift in Sources */,
@@ -394,6 +399,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -401,6 +408,7 @@
 				INFOPLIST_FILE = FilterThis/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -408,6 +416,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -415,6 +425,7 @@
 				INFOPLIST_FILE = FilterThis/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
