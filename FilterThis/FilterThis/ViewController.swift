@@ -45,21 +45,36 @@ class ViewController: UIViewController {
       self.imageView.image = finalImage
     }
     
-    let DepthOfFieldAction = UIAlertAction(title: "Depth Of Field", style: UIAlertActionStyle.Default){(alert) -> Void in
-      println("appy depth of field")
-//      let imageInputPoint1 = CGVectorMake(100, 100)
-//      let imageInputPoint2 = CGVectorMake(300, 300)
+    let gaussianBlurAction = UIAlertAction(title: "Gaussian Blur", style: UIAlertActionStyle.Default) { (alert) -> Void in
       let image = CIImage(image: self.imageView.image!)
-//      let vector = CIVector(x: <#CGFloat#>, y: <#CGFloat#>)
-      let DepthOfFieldFilter = CIFilter(name: "CIDepthOfField", withInputParameters:["inputImage":image]["inputPoint1":imageInputPoint1]["inputPoint2":imageInputPoint2] ["inputSaturation":10]["inputUnsharpMaskRadius":100]["inputUnsharpMaskIntensity":1]["inputRadius":10])
+      let gaussianBlurFilter = CIFilter(name: "CIGaussianBlur")
+      gaussianBlurFilter.setValue(image, forKey: kCIInputImageKey)
+      gaussianBlurFilter.setValue(10, forKey: kCIInputRadiusKey)
       
-      let outputImage = DepthOfFieldFilter.outputImage
+      let outputImage = gaussianBlurFilter.outputImage
       let extent = outputImage.extent()
       let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
       let finalImage = UIImage(CGImage: cgImage)
       self.imageView.image = finalImage
       
+      
     }
+    
+//    let DepthOfFieldAction = UIAlertAction(title: "Depth Of Field", style: UIAlertActionStyle.Default){(alert) -> Void in
+//      println("appy depth of field")
+//      let imageInputPoint1 = CIVector(x: 100, y: 100)
+//      let imageInputPoint2 = CIVector(x: 200, y: 200)
+//      let image = CIImage(image: self.imageView.image!)
+//      let depthOfFieldFilterDictionary = ["inputImage":image, "inputPoint1":imageInputPoint1, "inputPoint2":imageInputPoint2, "inputSaturation":10, "inputUnsharpMaskRadius":100, "inputUnsharpMaskIntensity":1, "inputRadius":10]
+//      let DepthOfFieldFilter = CIFilter(name: "CIDepthOfField", withInputParameters:depthOfFieldFilterDictionary)
+//      
+//      let outputImage = DepthOfFieldFilter.outputImage
+//      let extent = outputImage.extent()
+//      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
+//      let finalImage = UIImage(CGImage: cgImage)
+//      self.imageView.image = finalImage
+    
+//    }
     
     let GloomAction = UIAlertAction(title: "Gloom", style:  UIAlertActionStyle.Default) { (alert) -> Void in
       let image = CIImage(image: self.imageView.image!)
@@ -81,7 +96,8 @@ class ViewController: UIViewController {
     alert.addAction(cancelAction)
     alert.addAction(chooserAction)
     alert.addAction(sepiaAction)
-    alert.addAction(DepthOfFieldAction)
+    alert.addAction(gaussianBlurAction)
+//    alert.addAction(DepthOfFieldAction)
     alert.addAction(GloomAction)
     
     
