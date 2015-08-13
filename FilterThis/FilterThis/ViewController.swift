@@ -15,6 +15,9 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var alertButton: UIButton!
   
+  
+  
+  
   let picker: UIImagePickerController = UIImagePickerController()
   
   let alert = UIAlertController(title: "Options", message: "Here are all the option", preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -45,7 +48,6 @@ class ViewController: UIViewController {
       let sepiaFilter = CIFilter(name: "CISepiaTone")
       sepiaFilter.setValue(image, forKey: kCIInputImageKey)
       sepiaFilter.setValue(1, forKey: kCIInputIntensityKey)
-      
       let outputImage = sepiaFilter.outputImage
       let extent = outputImage.extent()
       let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
@@ -97,6 +99,15 @@ class ViewController: UIViewController {
       let finalImage = UIImage(CGImage: cgImage)
       self.imageView.image = finalImage
     }
+    
+    let filterAction = UIAlertAction(title: "FilterMe", style: UIAlertActionStyle.Default) { (alert) -> Void in
+      
+      if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone{
+        
+      }
+      
+      
+    }
       
     let PostThisAction = UIAlertAction(title: "PostThis", style: UIAlertActionStyle.Default, handler: { (alert) -> Void in
       
@@ -122,7 +133,7 @@ class ViewController: UIViewController {
       
       
   
-
+    alert.addAction(filterAction)
     alert.addAction(cancelAction)
     alert.addAction(chooserAction)
     alert.addAction(sepiaAction)
