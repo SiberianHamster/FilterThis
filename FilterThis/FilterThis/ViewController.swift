@@ -49,68 +49,10 @@ class ViewController: UIViewController {
     let chooserAction = UIAlertAction(title: "Choose", style: UIAlertActionStyle.Default) { (alert) -> Void in
       self.presentViewController(self.picker, animated: true, completion: nil)
     }
-      let options = [kCIContextWorkingColorSpace: NSNull()]
-      let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
-      let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
+
     
     
-    let sepiaAction = UIAlertAction(title: "Sepia", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      let image = CIImage(image: self.imageView.image!)
-      let sepiaFilter = CIFilter(name: "CISepiaTone")
-      sepiaFilter.setValue(image, forKey: kCIInputImageKey)
-      sepiaFilter.setValue(1, forKey: kCIInputIntensityKey)
-      let outputImage = sepiaFilter.outputImage
-      let extent = outputImage.extent()
-      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
-      let finalImage = UIImage(CGImage: cgImage)
-      self.imageView.image = finalImage
-    }
-    
-    let gaussianBlurAction = UIAlertAction(title: "Gaussian Blur", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      let image = CIImage(image: self.imageView.image!)
-      let gaussianBlurFilter = CIFilter(name: "CIGaussianBlur")
-      gaussianBlurFilter.setValue(image, forKey: kCIInputImageKey)
-      gaussianBlurFilter.setValue(10, forKey: kCIInputRadiusKey)
-      
-      let outputImage = gaussianBlurFilter.outputImage
-      let extent = outputImage.extent()
-      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
-      let finalImage = UIImage(CGImage: cgImage)
-      self.imageView.image = finalImage
-      
-      
-    }
-    
-//    let DepthOfFieldAction = UIAlertAction(title: "Depth Of Field", style: UIAlertActionStyle.Default){(alert) -> Void in
-//      println("appy depth of field")
-//      let imageInputPoint1 = CIVector(x: 100, y: 100)
-//      let imageInputPoint2 = CIVector(x: 200, y: 200)
-//      let image = CIImage(image: self.imageView.image!)
-//      let depthOfFieldFilterDictionary = ["inputImage":image, "inputPoint1":imageInputPoint1, "inputPoint2":imageInputPoint2, "inputSaturation":10, "inputUnsharpMaskRadius":100, "inputUnsharpMaskIntensity":1, "inputRadius":10]
-//      let DepthOfFieldFilter = CIFilter(name: "CIDepthOfField", withInputParameters:depthOfFieldFilterDictionary)
-//      
-//      let outputImage = DepthOfFieldFilter.outputImage
-//      let extent = outputImage.extent()
-//      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
-//      let finalImage = UIImage(CGImage: cgImage)
-//      self.imageView.image = finalImage
-    
-//    }
-    
-    let GloomAction = UIAlertAction(title: "Gloom", style:  UIAlertActionStyle.Default) { (alert) -> Void in
-      let image = CIImage(image: self.imageView.image!)
-      let gloomFilter = CIFilter(name: "CIGloom")
-      gloomFilter.setValue(image, forKey: kCIInputImageKey)
-      gloomFilter.setValue(10, forKey: kCIInputRadiusKey)
-      gloomFilter.setValue(1, forKey: kCIInputIntensityKey)
-      
-      let outputImage = gloomFilter.outputImage
-      let extent = outputImage.extent()
-      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
-      let finalImage = UIImage(CGImage: cgImage)
-      self.imageView.image = finalImage
-    }
-    
+        
     
       
       if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone{
@@ -146,10 +88,10 @@ class ViewController: UIViewController {
     
     alert.addAction(cancelAction)
     alert.addAction(chooserAction)
-    alert.addAction(sepiaAction)
-    alert.addAction(gaussianBlurAction)
-//    alert.addAction(DepthOfFieldAction)
-    alert.addAction(GloomAction)
+//    alert.addAction(sepiaAction)
+//    alert.addAction(gaussianBlurAction)
+////    alert.addAction(DepthOfFieldAction)
+//    alert.addAction(GloomAction)
     alert.addAction(PostThisAction)
     
     
@@ -206,11 +148,24 @@ func closeFilterMode(){
 
 }
 
+//Mark: ViewController Datasource
+extension ViewController: UICollectionViewDataSource{
+  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    let availableFilters = collectionView.dequeueReusableCellWithReuseIdentifier("filterCells", forIndexPath: indexPath) as! UICollectionViewCell
+    
+    
+    
+    return availableFilters
+  }
+  
+  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 22
+  }
+}
 
 
-
-
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+//Mark: ViewController Delegates
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate{
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
     let image: UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
     self.imageView.image = image

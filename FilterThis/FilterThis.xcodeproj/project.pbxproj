@@ -14,6 +14,7 @@
 		AE70BE441B79D07C00183C21 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE70BE431B79D07C00183C21 /* Images.xcassets */; };
 		AE70BE471B79D07C00183C21 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE70BE451B79D07C00183C21 /* LaunchScreen.xib */; };
 		AE70BE531B79D07C00183C21 /* FilterThisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE70BE521B79D07C00183C21 /* FilterThisTests.swift */; };
+		AE9E1EC61B7CF8DC006E689B /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E1EC51B7CF8DC006E689B /* FilterService.swift */; };
 		AEDF24A91B7B0A9D0032F657 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF24A71B7B0A9D0032F657 /* Bolts.framework */; };
 		AEDF24AA1B7B0A9D0032F657 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF24A81B7B0A9D0032F657 /* Parse.framework */; };
 		AEDF24B51B7B0B210032F657 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDF24AB1B7B0B200032F657 /* AudioToolbox.framework */; };
@@ -51,6 +52,7 @@
 		AE70BE4C1B79D07C00183C21 /* FilterThisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilterThisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE70BE511B79D07C00183C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE70BE521B79D07C00183C21 /* FilterThisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterThisTests.swift; sourceTree = "<group>"; };
+		AE9E1EC51B7CF8DC006E689B /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
 		AEDF24A71B7B0A9D0032F657 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		AEDF24A81B7B0A9D0032F657 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		AEDF24AB1B7B0B200032F657 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -131,6 +133,7 @@
 			children = (
 				AE70BE3C1B79D07C00183C21 /* AppDelegate.swift */,
 				AE70BE3E1B79D07C00183C21 /* ViewController.swift */,
+				AE9E1EC51B7CF8DC006E689B /* FilterService.swift */,
 				AEE5C10C1B7BAECE007F844D /* ImageResizer.swift */,
 				AE70BE401B79D07C00183C21 /* Main.storyboard */,
 				AE70BE431B79D07C00183C21 /* Images.xcassets */,
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEE5C10D1B7BAECE007F844D /* ImageResizer.swift in Sources */,
+				AE9E1EC61B7CF8DC006E689B /* FilterService.swift in Sources */,
 				AE24E5CE1B7AC2C00061B04E /* keys.swift in Sources */,
 				AE70BE3F1B79D07C00183C21 /* ViewController.swift in Sources */,
 				AE70BE3D1B79D07C00183C21 /* AppDelegate.swift in Sources */,
