@@ -16,6 +16,16 @@ class ViewController: UIViewController {
   @IBOutlet weak var alertButton: UIButton!
   
   
+  @IBOutlet weak var imageViewLeading: NSLayoutConstraint!
+  
+  @IBOutlet weak var imageViewTop: NSLayoutConstraint!
+  
+  @IBOutlet weak var imageViewTrailing: NSLayoutConstraint!
+  
+  @IBOutlet weak var imageViewBottom: NSLayoutConstraint!
+  
+  
+  
   
   
   let picker: UIImagePickerController = UIImagePickerController()
@@ -100,13 +110,14 @@ class ViewController: UIViewController {
       self.imageView.image = finalImage
     }
     
-    let filterAction = UIAlertAction(title: "FilterMe", style: UIAlertActionStyle.Default) { (alert) -> Void in
+    
       
       if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone{
-        
+        let filterAction = UIAlertAction(title: "FilterMe", style: UIAlertActionStyle.Default) { (alert) -> Void in
+          enterFilterMode()
       }
       
-      
+      alert.addAction(filterAction)
     }
       
     let PostThisAction = UIAlertAction(title: "PostThis", style: UIAlertActionStyle.Default, handler: { (alert) -> Void in
@@ -131,9 +142,7 @@ class ViewController: UIViewController {
     })
       
       
-      
-  
-    alert.addAction(filterAction)
+    
     alert.addAction(cancelAction)
     alert.addAction(chooserAction)
     alert.addAction(sepiaAction)
@@ -165,6 +174,11 @@ class ViewController: UIViewController {
     self.presentViewController(alert, animated: true, completion: nil)
   }
 
+}
+
+func enterFilterMode(){
+  
+  
 }
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
