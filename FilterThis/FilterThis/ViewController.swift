@@ -24,6 +24,7 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var imageViewBottom: NSLayoutConstraint!
   
+  @IBOutlet weak var collectionViewBottom: NSLayoutConstraint!
   
   
   
@@ -114,7 +115,7 @@ class ViewController: UIViewController {
       
       if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone{
         let filterAction = UIAlertAction(title: "FilterMe", style: UIAlertActionStyle.Default) { (alert) -> Void in
-          enterFilterMode()
+          self.enterFilterMode()
       }
       
       alert.addAction(filterAction)
@@ -173,13 +174,41 @@ class ViewController: UIViewController {
     }
     self.presentViewController(alert, animated: true, completion: nil)
   }
+  
+  func enterFilterMode(){
+  imageViewTop.constant = 30
+  imageViewLeading.constant = 30
+  imageViewTrailing.constant = -30
+  imageViewBottom.constant = 116
+  collectionViewBottom.constant  = 8
+  
+  UIView.animateWithDuration(0.3, animations: { () -> Void in
+    self.view.layoutIfNeeded()
+  })
+  let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "closeFilterMode")
+  navigationItem.rightBarButtonItem=doneButton
+}
+func closeFilterMode(){
+  
+  imageViewTop.constant = 8
+  imageViewLeading.constant = 0
+  imageViewTrailing.constant = 0
+  imageViewBottom.constant = 8
+  collectionViewBottom.constant  = -200
+  
+  UIView.animateWithDuration(0.3, animations: {() -> Void in
+    self.view.layoutIfNeeded()
+  })
+  
+  navigationItem.rightBarButtonItem=nil
+  
+}
 
 }
 
-func enterFilterMode(){
-  
-  
-}
+
+
+
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {

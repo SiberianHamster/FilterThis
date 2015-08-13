@@ -104,7 +104,12 @@
                     <navigationItem key="navigationItem" id="ZYf-SM-lxU"/>
                     <connections>
                         <outlet property="alertButton" destination="iLA-v7-jY7" id="J5Z-Dm-2XC"/>
+                        <outlet property="collectionViewBottom" destination="nKh-mB-x8j" id="kq5-kH-IuW"/>
                         <outlet property="imageView" destination="Npq-us-Zb7" id="yyl-7L-Akz"/>
+                        <outlet property="imageViewBottom" destination="rGX-9H-4C8" id="9iK-gg-v2T"/>
+                        <outlet property="imageViewLeading" destination="Vmz-rd-hDc" id="MK7-H4-Pe3"/>
+                        <outlet property="imageViewTop" destination="6qx-vx-IE0" id="BNW-EB-3pw"/>
+                        <outlet property="imageViewTrailing" destination="Kur-U5-5fL" id="vzk-I8-CMh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
