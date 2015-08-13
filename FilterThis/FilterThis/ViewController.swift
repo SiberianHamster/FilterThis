@@ -15,7 +15,6 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var alertButton: UIButton!
   
-  
   @IBOutlet weak var imageViewLeading: NSLayoutConstraint!
   
   @IBOutlet weak var imageViewTop: NSLayoutConstraint!
@@ -53,8 +52,7 @@ class ViewController: UIViewController {
     
     
         
-    
-      
+
       if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone{
         let filterAction = UIAlertAction(title: "FilterMe", style: UIAlertActionStyle.Default) { (alert) -> Void in
           self.enterFilterMode()
@@ -88,10 +86,6 @@ class ViewController: UIViewController {
     
     alert.addAction(cancelAction)
     alert.addAction(chooserAction)
-//    alert.addAction(sepiaAction)
-//    alert.addAction(gaussianBlurAction)
-////    alert.addAction(DepthOfFieldAction)
-//    alert.addAction(GloomAction)
     alert.addAction(PostThisAction)
     
     
