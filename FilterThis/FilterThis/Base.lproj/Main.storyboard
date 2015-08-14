@@ -122,11 +122,52 @@
                         <outlet property="imageViewLeading" destination="Vmz-rd-hDc" id="MK7-H4-Pe3"/>
                         <outlet property="imageViewTop" destination="6qx-vx-IE0" id="BNW-EB-3pw"/>
                         <outlet property="imageViewTrailing" destination="Kur-U5-5fL" id="vzk-I8-CMh"/>
+                        <segue destination="Sty-Ij-yDp" kind="show" identifier="GalleryCollection" id="LRH-Qj-LTy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1334" y="369"/>
+        </scene>
+        <!--Gallery Collection View Controller-->
+        <scene sceneID="w2P-2w-wPN">
+            <objects>
+                <viewController id="Sty-Ij-yDp" customClass="GalleryCollectionViewController" customModule="FilterThis" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="THn-pD-w9o"/>
+                        <viewControllerLayoutGuide type="bottom" id="bbN-EW-h4U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CP4-nt-HY2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2IZ-il-bvO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iKm-iJ-XqT">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCell" id="n5T-Vu-LlX">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IpF-td-4NL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1999" y="367"/>
         </scene>
         <!--Item-->
         <scene sceneID="yQi-gl-fAK">

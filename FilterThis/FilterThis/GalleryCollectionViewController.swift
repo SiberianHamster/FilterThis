@@ -10,25 +10,22 @@ import UIKit
 
 class GalleryCollectionViewController: UIViewController {
 
-
-  
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
-
-
 }
 
-extension GalleryCollectionViewController: UICollectionViewDataSource{
-
-  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 1
-  }
-  
+extension GalleryCollectionViewController: UICollectionViewDataSource
+{
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! UICollectionViewCell
+    var cell = collectionView.dequeueReusableCellWithReuseIdentifier("GalleryCell", forIndexPath: indexPath) as! UICollectionViewCell
     return cell
   }
   
+  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 1
+  }
 }
+  
+

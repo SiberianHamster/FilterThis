@@ -52,6 +52,13 @@ class ViewController: UIViewController {
   
   let alert = UIAlertController(title: "Options", message: "Here are all the option", preferredStyle: UIAlertControllerStyle.ActionSheet)
   
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "GalleryCollection" {
+      let GalleryCollection = segue.destinationViewController as! GalleryCollectionViewController
+      
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -71,14 +78,16 @@ class ViewController: UIViewController {
     let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alert) -> Void in
     }
     
-    let chooserAction = UIAlertAction(title: "Choose", style: UIAlertActionStyle.Default) { (alert) -> Void in
+    let chooserAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) { (alert) -> Void in
       self.presentViewController(self.picker, animated: true, completion: nil)
     }
     
-    
-    
-    
-    
+    let GalleryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default) { (alert) -> Void in
+      
+      self.performSegueWithIdentifier("GalleryCollection", sender: nil)
+    }
+  
+
     if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone{
       let filterAction = UIAlertAction(title: "FilterMe", style: UIAlertActionStyle.Default) { (alert) -> Void in
         self.enterFilterMode()
@@ -109,10 +118,10 @@ class ViewController: UIViewController {
     })
     
     
-    
     alert.addAction(cancelAction)
     alert.addAction(chooserAction)
     alert.addAction(PostThisAction)
+    alert.addAction(GalleryAction)
     
     
     picker.delegate = self
@@ -141,7 +150,7 @@ class ViewController: UIViewController {
   
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     let filter = filters[indexPath.row]
-    let filteredImage = filter(originalImage: thumbnail,context)
+    let filteredImage = filter(originalImage: imageView.image!,context)
     imageView.image = filteredImage
   }
   
@@ -154,7 +163,7 @@ class ViewController: UIViewController {
     imageViewLeading.constant = 30
     imageViewTrailing.constant = -30
     imageViewBottom.constant = 116
-    collectionViewBottom.constant  = 8
+    collectionViewBottom.constant  = -50
     
     UIView.animateWithDuration(0.3, animations: { () -> Void in
       self.view.layoutIfNeeded()
@@ -168,7 +177,7 @@ class ViewController: UIViewController {
     imageViewLeading.constant = 0
     imageViewTrailing.constant = 0
     imageViewBottom.constant = 8
-    collectionViewBottom.constant  = -200
+    collectionViewBottom.constant  = -400
     
     UIView.animateWithDuration(0.3, animations: {() -> Void in
       self.view.layoutIfNeeded()
