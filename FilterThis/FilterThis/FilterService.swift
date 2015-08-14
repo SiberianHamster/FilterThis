@@ -10,23 +10,26 @@ import UIKit
 
 class FilterService{
   
-  class func sepiaAction(originalImage:UIImage, context: CIContext)->UIImage  {
+  let gpuContext = CIContext(EAGLContext: EAGLContext(API: EAGLRenderingAPI.OpenGLES2), options: [kCIContextWorkingColorSpace: NSNull()])
+  
+  
+  class func sepiaAction(originalImage:UIImage)->UIImage  {
 
     let image = CIImage(image: originalImage)
     let sepiaFilter = CIFilter(name: "CISepiaTone")
     sepiaFilter.setValue(image, forKey: kCIInputImageKey)
     sepiaFilter.setValue(1, forKey: kCIInputIntensityKey)
-    return filteredImageFromFilter(sepiaFilter,context:context)
+    return filteredImageFromFilter(sepiaFilter)
   }
   
 
-  class func gaussianBlurAction(originalImage: UIImage, context: CIContext) -> UIImage {
+  class func gaussianBlurAction(originalImage: UIImage) -> UIImage {
 
     let image = CIImage(image: originalImage)
     let gaussianBlurFilter = CIFilter(name: "CIGaussianBlur")
     gaussianBlurFilter.setValue(image, forKey: kCIInputImageKey)
     gaussianBlurFilter.setValue(10, forKey: kCIInputRadiusKey)
-    return filteredImageFromFilter(gaussianBlurFilter, context:context)
+    return filteredImageFromFilter(gaussianBlurFilter)
   }
 
   
@@ -47,20 +50,16 @@ class FilterService{
   //    }
 
     
-    class func gloomAction(originalImage: UIImage, context: CIContext) -> UIImage{
+    class func gloomAction(originalImage: UIImage) -> UIImage{
       let image = CIImage(image: originalImage)
       let gloomFilter = CIFilter(name: "CIGloom")
       gloomFilter.setValue(image, forKey: kCIInputImageKey)
       gloomFilter.setValue(10, forKey: kCIInputRadiusKey)
       gloomFilter.setValue(1, forKey: kCIInputIntensityKey)
-      return filteredImageFromFilter(gloomFilter, context: context)
+      return filteredImageFromFilter(gloomFilter)
     }
     
-    class func filteredImageFromFilter(filter: CIFilter,context: CIContext)->UIImage{
-      let options = [kCIContextWorkingColorSpace: NSNull()]
-      let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
-      let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
-      
+    class func filteredImageFromFilter(filter: CIFilter)->UIImage{
       let outputImage = filter.outputImage
       let extent = outputImage.extent()
       let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)

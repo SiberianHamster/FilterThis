@@ -25,7 +25,11 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var collectionViewBottom: NSLayoutConstraint!
   
-  
+  var filters:[(originalImage:UIImage)->UIImage]=[
+  FilterService.gaussianBlurAction,
+  FilterService.gloomAction,
+  FilterService.sepiaAction
+  ]
   
   
   let picker: UIImagePickerController = UIImagePickerController()
@@ -146,14 +150,15 @@ func closeFilterMode(){
 extension ViewController: UICollectionViewDataSource{
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let availableFilters = collectionView.dequeueReusableCellWithReuseIdentifier("filterCells", forIndexPath: indexPath) as! UICollectionViewCell
-    
+    let filter = filters[indexPath.row]
+    let image = filter(originalImage: imageView.image)
     
     
     return availableFilters
   }
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 22
+    return filters.count
   }
 }
 
