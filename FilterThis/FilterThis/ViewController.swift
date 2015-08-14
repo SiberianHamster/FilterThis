@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 class ViewController: UIViewController {
-
+  
   @IBOutlet weak var imageView: UIImageView!
   
   @IBOutlet weak var alertButton: UIButton!
@@ -26,12 +26,15 @@ class ViewController: UIViewController {
   @IBOutlet weak var collectionViewBottom: NSLayoutConstraint!
   
   @IBOutlet weak var collectionView: UICollectionView!
-
+  
   
   var filters:[(originalImage:UIImage, CIContext)->(UIImage!)]=[
-  FilterService.gaussianBlurAction,
-  FilterService.gloomAction,
-  FilterService.sepiaAction
+    FilterService.gaussianBlurAction,
+    FilterService.gloomAction,
+    FilterService.sepiaAction,
+    FilterService.gaussianBlurAction,
+    FilterService.gloomAction,
+    FilterService.sepiaAction
   ]
   let context = CIContext(options: nil)
   var thumbnail : UIImage!
@@ -53,12 +56,14 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     collectionView.delegate = self
-
+    
     
     let testObject = PFObject(className: "TestObject")
     testObject["foo"] = "bar"
     testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
       println("Object has been saved.")
+      
+    
     }
     
     
@@ -69,31 +74,31 @@ class ViewController: UIViewController {
     let chooserAction = UIAlertAction(title: "Choose", style: UIAlertActionStyle.Default) { (alert) -> Void in
       self.presentViewController(self.picker, animated: true, completion: nil)
     }
-
     
     
-        
-
-      if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone{
-        let filterAction = UIAlertAction(title: "FilterMe", style: UIAlertActionStyle.Default) { (alert) -> Void in
-          self.enterFilterMode()
+    
+    
+    
+    if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone{
+      let filterAction = UIAlertAction(title: "FilterMe", style: UIAlertActionStyle.Default) { (alert) -> Void in
+        self.enterFilterMode()
       }
       
       alert.addAction(filterAction)
     }
-      
+    
     let PostThisAction = UIAlertAction(title: "PostThis", style: UIAlertActionStyle.Default, handler: { (alert) -> Void in
       
       
       let post = PFObject(className: "Post")
       post["Text"] = "Test Post"
-     
+      
       if let image = self.imageView.image
       {
-      let resizedImage = ImageResizer.resizeImageWithSize(image, size: CGSizeMake(600, 600))
-      let newImage = resizedImage
-      let data = UIImageJPEGRepresentation(newImage, 1.0)
-      
+        let resizedImage = ImageResizer.resizeImageWithSize(image, size: CGSizeMake(600, 600))
+        let newImage = resizedImage
+        let data = UIImageJPEGRepresentation(newImage, 1.0)
+        
         let file = PFFile(name: "post.jpeg",data: data)
         post["image"] = file
       }
@@ -103,7 +108,7 @@ class ViewController: UIViewController {
       
     })
     
-      
+    
     
     alert.addAction(cancelAction)
     alert.addAction(chooserAction)
@@ -113,16 +118,16 @@ class ViewController: UIViewController {
     picker.delegate = self
     
     if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){picker.sourceType = UIImagePickerControllerSourceType.Camera
-      }
+    }
     else {picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary}
     
   }
-
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-
+  
   @IBAction func buttonTapped(sender: UIButton) {
     alert.modalPresentationStyle = UIModalPresentationStyle.Popover
     
@@ -133,35 +138,46 @@ class ViewController: UIViewController {
     self.presentViewController(alert, animated: true, completion: nil)
   }
   
+  
+  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    let filter = filters[indexPath.row]
+    let filteredImage = filter(originalImage: thumbnail,context)
+    imageView.image = filteredImage
+  }
+  
+  
+  
+  
+  
   func enterFilterMode(){
-  imageViewTop.constant = 30
-  imageViewLeading.constant = 30
-  imageViewTrailing.constant = -30
-  imageViewBottom.constant = 116
-  collectionViewBottom.constant  = 8
+    imageViewTop.constant = 30
+    imageViewLeading.constant = 30
+    imageViewTrailing.constant = -30
+    imageViewBottom.constant = 116
+    collectionViewBottom.constant  = 8
+    
+    UIView.animateWithDuration(0.3, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
+    let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "closeFilterMode")
+    navigationItem.rightBarButtonItem=doneButton
+  }
+  func closeFilterMode(){
+    
+    imageViewTop.constant = 8
+    imageViewLeading.constant = 0
+    imageViewTrailing.constant = 0
+    imageViewBottom.constant = 8
+    collectionViewBottom.constant  = -200
+    
+    UIView.animateWithDuration(0.3, animations: {() -> Void in
+      self.view.layoutIfNeeded()
+    })
+    
+    navigationItem.rightBarButtonItem=nil
+    
+  }
   
-  UIView.animateWithDuration(0.3, animations: { () -> Void in
-    self.view.layoutIfNeeded()
-  })
-  let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "closeFilterMode")
-  navigationItem.rightBarButtonItem=doneButton
-}
-func closeFilterMode(){
-  
-  imageViewTop.constant = 8
-  imageViewLeading.constant = 0
-  imageViewTrailing.constant = 0
-  imageViewBottom.constant = 8
-  collectionViewBottom.constant  = -200
-  
-  UIView.animateWithDuration(0.3, animations: {() -> Void in
-    self.view.layoutIfNeeded()
-  })
-  
-  navigationItem.rightBarButtonItem=nil
-  
-}
-
 }
 
 //Mark: ViewController Datasource
@@ -174,7 +190,7 @@ extension ViewController: UICollectionViewDataSource{
       
       let filteredImage = filter(originalImage: thumbnail,context)
       cell.imageView.image = filteredImage
-    
+      
     }
     return cell
   }
@@ -196,6 +212,4 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
     self.picker.dismissViewControllerAnimated(true, completion: nil)
   }
-  
-  
 }
