@@ -10,26 +10,26 @@ import UIKit
 
 class FilterService{
   
-  let gpuContext = CIContext(EAGLContext: EAGLContext(API: EAGLRenderingAPI.OpenGLES2), options: [kCIContextWorkingColorSpace: NSNull()])
   
   
-  class func sepiaAction(originalImage:UIImage)->UIImage  {
+  
+  class func sepiaAction(originalImage:UIImage, context: CIContext)->UIImage  {
 
     let image = CIImage(image: originalImage)
     let sepiaFilter = CIFilter(name: "CISepiaTone")
     sepiaFilter.setValue(image, forKey: kCIInputImageKey)
     sepiaFilter.setValue(1, forKey: kCIInputIntensityKey)
-    return filteredImageFromFilter(sepiaFilter)
+    return filteredImageFromFilter(sepiaFilter, context: context)
   }
   
 
-  class func gaussianBlurAction(originalImage: UIImage) -> UIImage {
+  class func gaussianBlurAction(originalImage: UIImage, context: CIContext) -> UIImage {
 
     let image = CIImage(image: originalImage)
     let gaussianBlurFilter = CIFilter(name: "CIGaussianBlur")
     gaussianBlurFilter.setValue(image, forKey: kCIInputImageKey)
     gaussianBlurFilter.setValue(10, forKey: kCIInputRadiusKey)
-    return filteredImageFromFilter(gaussianBlurFilter)
+    return filteredImageFromFilter(gaussianBlurFilter, context: context)
   }
 
   
@@ -50,21 +50,21 @@ class FilterService{
   //    }
 
     
-    class func gloomAction(originalImage: UIImage) -> UIImage{
+    class func gloomAction(originalImage: UIImage, context: CIContext) -> UIImage{
       let image = CIImage(image: originalImage)
       let gloomFilter = CIFilter(name: "CIGloom")
       gloomFilter.setValue(image, forKey: kCIInputImageKey)
       gloomFilter.setValue(10, forKey: kCIInputRadiusKey)
       gloomFilter.setValue(1, forKey: kCIInputIntensityKey)
-      return filteredImageFromFilter(gloomFilter)
+      return filteredImageFromFilter(gloomFilter, context: context)
     }
     
-    class func filteredImageFromFilter(filter: CIFilter)->UIImage{
+  class func filteredImageFromFilter(filter: CIFilter, context : CIContext)->UIImage{
       let outputImage = filter.outputImage
       let extent = outputImage.extent()
-      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
-      let finalImage = UIImage(CGImage: cgImage)
-      return finalImage!
+      let cgImage = context.createCGImage(outputImage, fromRect: extent)
+      let finalImage = UIImage(CGImage: cgImage)!
+      return finalImage
     }
   }
 

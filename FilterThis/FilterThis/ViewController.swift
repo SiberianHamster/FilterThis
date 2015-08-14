@@ -25,11 +25,24 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var collectionViewBottom: NSLayoutConstraint!
   
-  var filters:[(originalImage:UIImage)->UIImage]=[
+  @IBOutlet weak var collectionView: UICollectionView!
+
+  
+  var filters:[(originalImage:UIImage, CIContext)->(UIImage!)]=[
   FilterService.gaussianBlurAction,
   FilterService.gloomAction,
   FilterService.sepiaAction
   ]
+  let context = CIContext(options: nil)
+  var thumbnail : UIImage!
+  
+  var displayImage: UIImage? {
+    didSet{
+      thumbnail = ImageResizer.resizeImageWithSize(displayImage!, size: CGSizeMake(100, 100))
+      self.imageView.image = displayImage
+      collectionView.reloadData()
+    }
+  }
   
   
   let picker: UIImagePickerController = UIImagePickerController()
@@ -38,6 +51,10 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    collectionView.delegate = self
+
+    
     let testObject = PFObject(className: "TestObject")
     testObject["foo"] = "bar"
     testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
@@ -73,7 +90,7 @@ class ViewController: UIViewController {
      
       if let image = self.imageView.image
       {
-      let resizedImage = ImageResizer.ImageResizer(image)
+      let resizedImage = ImageResizer.resizeImageWithSize(image, size: CGSizeMake(600, 600))
       let newImage = resizedImage
       let data = UIImageJPEGRepresentation(newImage, 1.0)
       
@@ -85,7 +102,7 @@ class ViewController: UIViewController {
       })
       
     })
-      
+    
       
     
     alert.addAction(cancelAction)
@@ -94,6 +111,7 @@ class ViewController: UIViewController {
     
     
     picker.delegate = self
+    
     if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){picker.sourceType = UIImagePickerControllerSourceType.Camera
       }
     else {picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary}
@@ -149,12 +167,16 @@ func closeFilterMode(){
 //Mark: ViewController Datasource
 extension ViewController: UICollectionViewDataSource{
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let availableFilters = collectionView.dequeueReusableCellWithReuseIdentifier("filterCells", forIndexPath: indexPath) as! UICollectionViewCell
+    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("filterCells", forIndexPath: indexPath) as! ThumbnailCell
     let filter = filters[indexPath.row]
-    let image = filter(originalImage: imageView.image)
     
+    if let thumbnail = thumbnail {
+      
+      let filteredImage = filter(originalImage: thumbnail,context)
+      cell.imageView.image = filteredImage
     
-    return availableFilters
+    }
+    return cell
   }
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -167,7 +189,7 @@ extension ViewController: UICollectionViewDataSource{
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate{
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
     let image: UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
-    self.imageView.image = image
+    self.displayImage = image
     self.picker.dismissViewControllerAnimated(true, completion: nil)
   }
   

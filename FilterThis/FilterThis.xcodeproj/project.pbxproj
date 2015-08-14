@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AE24E5CE1B7AC2C00061B04E /* keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE24E5CD1B7AC2C00061B04E /* keys.swift */; };
+		AE38389B1B7DA0DF00C7C16C /* ThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38389A1B7DA0DF00C7C16C /* ThumbnailCell.swift */; };
 		AE70BE3D1B79D07C00183C21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE70BE3C1B79D07C00183C21 /* AppDelegate.swift */; };
 		AE70BE3F1B79D07C00183C21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE70BE3E1B79D07C00183C21 /* ViewController.swift */; };
 		AE70BE421B79D07C00183C21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE70BE401B79D07C00183C21 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		AE24E5CD1B7AC2C00061B04E /* keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = keys.swift; sourceTree = "<group>"; };
+		AE38389A1B7DA0DF00C7C16C /* ThumbnailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailCell.swift; sourceTree = "<group>"; };
 		AE70BE371B79D07C00183C21 /* FilterThis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilterThis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE70BE3B1B79D07C00183C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE70BE3C1B79D07C00183C21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				AE70BE3C1B79D07C00183C21 /* AppDelegate.swift */,
 				AE70BE3E1B79D07C00183C21 /* ViewController.swift */,
+				AE38389A1B7DA0DF00C7C16C /* ThumbnailCell.swift */,
 				AE9E1EC51B7CF8DC006E689B /* FilterService.swift */,
 				AEE5C10C1B7BAECE007F844D /* ImageResizer.swift */,
 				AE70BE401B79D07C00183C21 /* Main.storyboard */,
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE38389B1B7DA0DF00C7C16C /* ThumbnailCell.swift in Sources */,
 				AEE5C10D1B7BAECE007F844D /* ImageResizer.swift in Sources */,
 				AE9E1EC61B7CF8DC006E689B /* FilterService.swift in Sources */,
 				AE24E5CE1B7AC2C00061B04E /* keys.swift in Sources */,

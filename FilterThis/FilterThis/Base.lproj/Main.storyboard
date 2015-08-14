@@ -54,22 +54,33 @@
                                     <constraint firstAttribute="height" constant="100" id="Azp-Wo-0DX"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c6h-zr-JIc">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="86" height="87"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCells" id="av0-lb-9OD">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCells" id="av0-lb-9OD" customClass="ThumbnailCell" customModule="FilterThis" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="86" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NWv-Ci-7oj">
+                                                    <rect key="frame" x="8" y="-1" width="86" height="87"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <outlet property="imageView" destination="NWv-Ci-7oj" id="ZWS-Ns-TAg"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="d5U-ZN-ZCN"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -104,6 +115,7 @@
                     <navigationItem key="navigationItem" id="ZYf-SM-lxU"/>
                     <connections>
                         <outlet property="alertButton" destination="iLA-v7-jY7" id="J5Z-Dm-2XC"/>
+                        <outlet property="collectionView" destination="C5W-do-5O7" id="Vht-cL-dOU"/>
                         <outlet property="collectionViewBottom" destination="jML-4n-rnT" id="K2r-a7-H16"/>
                         <outlet property="imageView" destination="Npq-us-Zb7" id="yyl-7L-Akz"/>
                         <outlet property="imageViewBottom" destination="rGX-9H-4C8" id="9iK-gg-v2T"/>

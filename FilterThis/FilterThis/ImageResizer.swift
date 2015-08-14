@@ -10,10 +10,10 @@ import UIKit
 
 class ImageResizer {
   
-
-  class func ImageResizer(image: UIImage)-> UIImage{
-    UIGraphicsBeginImageContext(CGSize(width: 600, height: 600))
-    image.drawInRect(CGRect(x: 0, y: 0, width: 600, height: 600))
+  class func resizeImageWithSize(image: UIImage, size:CGSize) ->UIImage
+  {
+  UIGraphicsBeginImageContext(size)
+    image.drawInRect(CGRectMake(0, 0, size.width, size.height))
     let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     return resizedImage
