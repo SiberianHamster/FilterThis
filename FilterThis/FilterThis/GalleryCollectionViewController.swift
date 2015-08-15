@@ -13,14 +13,8 @@ class GalleryCollectionViewController: UIViewController {
 
   @IBOutlet weak var collectionView: UICollectionView!
   
-  var fetchResult : PHFetchResult!
-  var cellsize = CGSize(width: 100, height: 100)
-  
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-      
-      fetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: nil)
 
     }
 }
@@ -39,3 +33,5 @@ extension GalleryCollectionViewController: UICollectionViewDataSource
   }
   
 }
+
+//Mark: GalleryCollectionView Delegate
