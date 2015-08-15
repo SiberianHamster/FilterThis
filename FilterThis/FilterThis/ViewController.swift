@@ -63,6 +63,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     collectionView.delegate = self
+    collectionView.dataSource = self
     
     
     let testObject = PFObject(className: "TestObject")
@@ -125,6 +126,7 @@ class ViewController: UIViewController {
     
     
     picker.delegate = self
+    
     
     if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){picker.sourceType = UIImagePickerControllerSourceType.Camera
     }
@@ -192,7 +194,7 @@ class ViewController: UIViewController {
 //Mark: ViewController Datasource
 extension ViewController: UICollectionViewDataSource{
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("filterCells", forIndexPath: indexPath) as! ThumbnailCell
+    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("GalleryCell", forIndexPath: indexPath) as! ThumbnailCell
     let filter = filters[indexPath.row]
     
     if let thumbnail = thumbnail {
