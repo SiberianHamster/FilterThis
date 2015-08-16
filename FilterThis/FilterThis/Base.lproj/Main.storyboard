@@ -141,9 +141,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2IZ-il-bvO">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2IZ-il-bvO">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iKm-iJ-XqT">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SIr-S1-ZKk">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -157,17 +157,33 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9v4-gV-2ZC">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9v4-gV-2ZC">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="9v4-gV-2ZC" firstAttribute="leading" secondItem="n5T-Vu-LlX" secondAttribute="leadingMargin" constant="-8" id="cow-pw-eM8"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="9v4-gV-2ZC" secondAttribute="trailing" constant="-8" id="kAh-nN-Zcn"/>
+                                            <constraint firstItem="9v4-gV-2ZC" firstAttribute="top" secondItem="n5T-Vu-LlX" secondAttribute="topMargin" constant="-8" id="kwh-uA-fvy"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="9v4-gV-2ZC" secondAttribute="bottom" constant="-8" id="z6r-mS-pnq"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="9v4-gV-2ZC" id="cyP-JK-nRn"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="2IZ-il-bvO" secondAttribute="trailing" constant="-16" id="2Uy-Vu-mey"/>
+                            <constraint firstItem="2IZ-il-bvO" firstAttribute="bottom" secondItem="CP4-nt-HY2" secondAttribute="bottomMargin" id="Ay6-kw-f0e"/>
+                            <constraint firstItem="2IZ-il-bvO" firstAttribute="leading" secondItem="CP4-nt-HY2" secondAttribute="leadingMargin" constant="-16" id="XjF-GX-N6O"/>
+                            <constraint firstItem="2IZ-il-bvO" firstAttribute="top" secondItem="CP4-nt-HY2" secondAttribute="topMargin" id="qqm-Zs-aPy"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="2IZ-il-bvO" id="tEL-n4-1FI"/>

@@ -64,6 +64,8 @@ class ViewController: UIViewController {
     
     collectionView.delegate = self
     collectionView.dataSource = self
+    weak var delegate: ImageSelectedDelegate?
+
     
     
     let testObject = PFObject(className: "TestObject")
@@ -212,12 +214,18 @@ extension ViewController: UICollectionViewDataSource{
 }
 
 
+
+
 //Mark: ViewController Delegates
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate{
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDelegate, ImageSelectedDelegate{
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
     let image: UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
     self.displayImage = image
     self.picker.dismissViewControllerAnimated(true, completion: nil)
+  }
+  func controllerDidSelectImage(ImageSelected: UIImage) -> (Void){
+    let image: UIImage = ImageSelected
+    self.displayImage = image
   }
   
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
