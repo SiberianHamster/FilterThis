@@ -153,8 +153,10 @@ class ViewController: UIViewController {
   
   
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+      let Orientation = ReOrient.ImageGetOrientation(imageView.image!)
     let filter = filters[indexPath.row]
-    let filteredImage = filter(originalImage: imageView.image!,context)
+    var filteredImage = filter(originalImage: imageView.image!,context)
+    filteredImage = ReOrient.ImageSetOrientation(filteredImage, orientation: Orientation)
     imageView.image = filteredImage
   }
   
