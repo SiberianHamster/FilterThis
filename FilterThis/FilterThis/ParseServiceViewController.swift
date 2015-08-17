@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import Parse
 
 class ParseServiceViewController: UIViewController {
 
   @IBOutlet weak var tableView: UITableView!
   
+  var parseImages:[PFObject]=[]
+  var parseObjectList:[String]=[]
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       self.tableView.dataSource = self
+      
+      parseObjectList = ParseService.parseRetrieveListOfObjectID()
+      println("You got \(parseObjectList.count) items")
 
     }
   
@@ -29,6 +36,7 @@ extension ParseServiceViewController: UITableViewDataSource
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
+//    cell.imageView?.image = ParseImages[indexPath.row].
     return cell
   }
 

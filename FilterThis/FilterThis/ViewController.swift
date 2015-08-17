@@ -68,16 +68,14 @@ class ViewController: UIViewController {
 
     
     
-    let testObject = PFObject(className: "TestObject")
-    testObject["foo"] = "bar"
-    testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-      println("Object has been saved.")
-      
-    
-    }
-    
-    
-    // Do any additional setup after loading the view, typically from a nib.
+//    let testObject = PFObject(className: "TestObject")
+//    testObject["foo"] = "bar"
+//    testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+//      println("Object has been saved.")
+//      
+//    
+//    }
+
     let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alert) -> Void in
     }
     
