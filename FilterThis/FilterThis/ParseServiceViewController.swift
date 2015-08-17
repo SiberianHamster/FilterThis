@@ -20,18 +20,19 @@ class ParseServiceViewController: UIViewController {
         super.viewDidLoad()
       self.tableView.dataSource = self
       
-      parseObjectList = ParseService.parseRetrieveListOfObjectID()
-      println("You got \(parseObjectList.count) items")
-
-    }
+      parseObjectList = ParseService.parseRetrieveListOfObjectID
+        {()-> [String] in
+      println("You got \(self.parseObjectList.count) items")
+        }
+    
   
-
+  }
 }
 
 extension ParseServiceViewController: UITableViewDataSource
 {
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
+    return parseObjectList.count
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

@@ -18,28 +18,22 @@ class ParseService {
 
     
     query.findObjectsInBackgroundWithBlock {
-      (objects: [AnyObject]!, error: NSError!) -> Void in
-      
-      println("hello")
-      println(objects)
-      
+      (objects,error) -> Void in
       
       if error == nil {
         println("Successfully retrieved \(objects!.count) objectId.")
 
         if let objects = objects as? [PFObject] {
           for object in objects {
-            println("hi")
-            println(object.objectId)
             listOfObjects.append(object.objectId!)
           }
         }
       } else {
-        // Log details of the failure
+
         println("Error: \(error!) \(error!.userInfo!)")
       }
     }
-    
+
     return listOfObjects
     }
   
