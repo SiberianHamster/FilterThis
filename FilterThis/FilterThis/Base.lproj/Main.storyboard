@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Timeline-->
         <scene sceneID="gtr-GK-Oes">
             <objects>
                 <viewController id="fnM-cy-imy" customClass="ParseServiceViewController" customModule="FilterThis" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,7 +46,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="qra-2P-hf7"/>
+                    <tabBarItem key="tabBarItem" title="Timeline" id="qra-2P-hf7"/>
                     <connections>
                         <outlet property="tableView" destination="qey-YS-C7O" id="kV5-Ji-T9T"/>
                     </connections>
@@ -224,11 +224,11 @@
             </objects>
             <point key="canvasLocation" x="1999" y="367"/>
         </scene>
-        <!--Item-->
+        <!--Main-->
         <scene sceneID="yQi-gl-fAK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nsO-Wa-0Mr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="orJ-Ol-LlZ"/>
+                    <tabBarItem key="tabBarItem" title="Main" id="orJ-Ol-LlZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YyY-0u-Wyv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

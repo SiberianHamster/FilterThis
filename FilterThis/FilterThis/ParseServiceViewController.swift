@@ -20,11 +20,10 @@ class ParseServiceViewController: UIViewController {
         super.viewDidLoad()
       self.tableView.dataSource = self
       
-      parseObjectList = ParseService.parseRetrieveListOfObjectID
-        {()-> [String] in
-      println("You got \(self.parseObjectList.count) items")
-        }
-    
+      ParseService.parseRetrieveListOfObjectID(
+        {(data)-> (Void) in
+          println("You got \(data.count) items")
+        })
   
   }
 }

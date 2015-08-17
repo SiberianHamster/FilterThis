@@ -11,7 +11,7 @@ import Parse
 
 class ParseService {
   
-  class func parseRetrieveListOfObjectID()->[String]
+  class func parseRetrieveListOfObjectID(completionHandler: (data:[String])->(Void))
   {
     var listOfObjects: [String]=[]
     var query = PFQuery(className:"Post")
@@ -27,6 +27,7 @@ class ParseService {
           for object in objects {
             listOfObjects.append(object.objectId!)
           }
+          completionHandler(data: listOfObjects)
         }
       } else {
 
@@ -34,19 +35,10 @@ class ParseService {
       }
     }
 
-    return listOfObjects
+    //return listOfObjects
     }
   
 }
-
-//pull all objectId String and store that into an array.
-
-
-
-//push that to the viewcontroller's cellforindexPath.
-//lazy load to get image based on objectID from cellforindexPath
-//push images to cellforindexPath's image
-
 
 
       

@@ -55,6 +55,7 @@ class ViewController: UIViewController {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "GalleryCollection" {
       let GalleryCollection = segue.destinationViewController as! GalleryCollectionViewController
+      GalleryCollection.delegate = self
       
     }
   }

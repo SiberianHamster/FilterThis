@@ -19,7 +19,7 @@ class GalleryCollectionViewController: UIViewController {
   
   var fetchResult : PHFetchResult!
   var cellsize = CGSize(width: 100, height: 100)
-  var desiredFinalImageSize: CGSize!
+  var desiredFinalImageSize = CGSize(width: 100, height: 100)
   var startingScale : CGFloat = 0
   var scale : CGFloat = 0
   
@@ -103,6 +103,8 @@ extension GalleryCollectionViewController : UICollectionViewDelegate{
         
         if let image = image {
           self.delegate?.controllerDidSelectImage(image)
+//          self.navigationController?.viewControllers
+//          good old way to find out all the viewcontrollers of navigationController.
           self.navigationController?.popViewControllerAnimated(true)
         }
       }
